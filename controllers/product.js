@@ -9,12 +9,14 @@ var SORT_ITEM;
 var sort_value = "Giá thấp tới cao";
 var ptype;
 var ptypesub;
-var pprice = 999999;
+var pprice = 50000000;
 var psize;
 var plabel;
-var plowerprice;
+var pplowerprice =0;
 var price;
 var searchText;
+
+
 
 exports.getIndexProducts = (req, res, next) => {
   var cartProduct;
@@ -86,11 +88,40 @@ exports.getProducts = (req, res, next) => {
 
   ptype = req.query.type !== undefined ? req.query.type : ptype;
   ptypesub = req.query.type !== undefined ? req.query.type : ptypesub;
-  pprice = req.query.price !== undefined ? req.query.price : 999999;
+  //pprice = req.query.price !== undefined ? req.query.price : 50000000;
   psize = req.query.size !== undefined ? req.query.size : psize;
   plabel = req.query.label !== undefined ? req.query.label : plabel;
-  plowerprice = pprice !== 999999 ? pprice - 50 : 0;
-  plowerprice = pprice == 1000000 ? 200 : plowerprice;
+  //pplowerprice = req.query.plowerprice !== undefined ? req.query.plowerprice : 0;
+  // plowerprice = pprice !== 999999 ? pprice - 50 : 0;
+  // plowerprice = pprice == 1000000 ? 200 : plowerprice;
+  let filterPrice = parseInt(req.query.price);
+  switch (filterPrice) {
+        case 1:
+            pprice = 250000;
+            pplowerprice = 0;
+            break;
+        case 2:
+            pprice = 500000;
+            pplowerprice = 250000;
+            break;
+        case 3:
+            pprice = 1000000;
+            pplowerprice = 500000;
+            break;
+        case 4:
+            pprice = 5000000;
+            pplowerprice = 1000000;
+            break;
+        case 5:
+            pprice = 50000000; // Nếu giá trị lớn hơn 5 triệu
+            pplowerprice = 5000000;
+            break;
+        default:
+            // Giá trị mặc định nếu không có lựa chọn nào được chọn
+            pprice = 50000000;
+            pplowerprice = 0;
+            break;
+    }
   SORT_ITEM = req.query.orderby;
 
   if (SORT_ITEM == -1) {
@@ -140,8 +171,9 @@ exports.getProducts = (req, res, next) => {
     "productType.main": new RegExp(productType, "i"),
     "productType.sub": new RegExp(productChild, "i"),
     size: new RegExp(psize, "i"),
-    price: { $gt: plowerprice, $lt: pprice },
-    labels: new RegExp(plabel, "i")
+    price: { $gt: pplowerprice, $lt: pprice },
+    labels: new RegExp(plabel, "i"),
+    type: new RegExp(ptype,"i")
   })
     .countDocuments()
     .then(numProduct => {
@@ -150,8 +182,9 @@ exports.getProducts = (req, res, next) => {
         "productType.main": new RegExp(productType, "i"),
         "productType.sub": new RegExp(productChild, "i"),
         size: new RegExp(psize, "i"),
-        price: { $gt: plowerprice, $lt: pprice },
-        labels: new RegExp(plabel, "i")
+        price: { $gt: pplowerprice, $lt: pprice },
+        labels: new RegExp(plabel, "i"),
+        type: new RegExp(ptype,"i")
       })
         .skip((page - 1) * ITEM_PER_PAGE)
         .limit(ITEM_PER_PAGE)

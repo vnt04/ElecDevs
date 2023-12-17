@@ -20,6 +20,10 @@ const productSchema = new Schema({
     type: Number,
     required: true
   },
+  oldPrice: {
+    type: Number,
+    required: true
+  },
   size: {
     type: [String],
     required: true
@@ -65,7 +69,7 @@ const productSchema = new Schema({
   ofSellers: {
     userId: {
       type: Schema.Types.ObjectId,
-      required: true,
+      required: false, // nghiệp đã sửa thành false
       ref: "User"
     },
     name: String

@@ -27,7 +27,7 @@
               <%if (messageSucc != "undefined") { %>
               <div
                 class="error"
-                style="background-color: #ffffff; font-weight: bold; color :rgb(0,255,127)"
+                style="background-color: #ffffff; font-weight: bold; color :rgb(0,255,127); margin-bottom: 16px;"
               >
                 <%= messageSucc %>
               </div>
@@ -61,7 +61,7 @@
                         <%= o.phoneNumber %>
                       </td>
                       <td>
-                        $<%= o.cart.totalPrice %> cho <%= o.cart.totalQty %> sản
+                        <%= o.cart.totalPrice.toLocaleString('vi-VN') %>&#x20AB; cho <%= o.cart.totalQty %> sản
                         phẩm
                       </td>
                     </tr>
@@ -101,7 +101,7 @@
                 >Thay đổi thông tin</a
               >
             </div>
-            <a href="/change-password" class="btn btn-border">Đổi mật khẩu</a>
+            <a href="/change-password" class="btn btn-border" style="padding: 0px 44px">Đổi mật khẩu</a>
           </div>
         </div>
       </div>

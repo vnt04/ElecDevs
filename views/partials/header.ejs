@@ -5,15 +5,15 @@
 				<a href="/">Trang chủ</a>
 				<ul>
 					<li>
-						<a href="/">HOME STYLES</a>
+						<a href="/products?type=Smartphone">Điện thoại</a>
 						
 					</li>
 					<li>
-						<a href="/">HOME STYLES</a>
+						<a href="/products?type=Laptop">Laptop</a>
 						
 					</li>
 					<li>
-						<a href="/">HOME SKINS <span class="tt-badge tt-sale">HOT</span></a>
+						<a href="/products">Phụ kiện <span class="tt-badge tt-sale">HOT</span></a>
 						
 					</li>
 				</ul>
@@ -56,7 +56,7 @@
 			<div class="row">
 				<div class="tt-logo-container">
 					<!-- mobile logo -->
-					<a class="tt-logo tt-logo-alignment" href="/"><img src="/images/custom/logo.png" alt=""></a>
+					<a class="tt-logo tt-logo-alignment" href="/"><img src="/images/custom/logo-02.png" alt=""></a>
 					<!-- /mobile logo -->
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 			<div class="tt-header-holder">
 				<div class="tt-col-obj tt-obj-logo">
 					<!-- logo -->
-					<a class="tt-logo tt-logo-alignment" href="/"><img src="/images/custom/logo.png" alt=""></a>
+					<a class="tt-logo tt-logo-alignment" href="/"><img src="/images/custom/logo-02.png" alt=""></a>
 					<!-- /logo -->
 				</div>
 				<div class="tt-col-obj tt-obj-menu">
@@ -102,7 +102,7 @@
 								<div class="container">
 									<form method="GET" action="/search">
 										<div class="tt-col">
-											<input type="text" class="tt-search-input" placeholder="Tìm Kiếm Sản Phẩm..." name="searchText">
+											<input type="text" class="tt-search-input" placeholder="Nhập để tìm kiếm sản phẩm..." name="searchText">
 											
 											<button class="tt-btn-search" type="submit"></button>
 										
@@ -156,12 +156,12 @@
 													
 													<a href="/product/<%= item.item._id %>">
 														<div class="tt-item-img">
-															<img src="http://bros-admin.herokuapp.com/assets/images/<%= item.images %>" data-src="http://bros-admin.herokuapp.com/assets/images/<%= item.images %>" alt="">
+															<img src="images/product/<%= item.images %>" data-src="images/product/<%= item.images %>" alt="">
 														</div>
 														<div class="tt-item-descriptions">
 															<h2 class="tt-title"><%= item.item.name %></h2>
 															
-															<div class="tt-quantity"><%= item.qty %> X</div> <div class="tt-price">$<%= item.item.price %></div>
+															<div class="tt-quantity"><%= item.qty %> X</div> <div class="tt-price"><%= item.item.price.toLocaleString('vi-VN') %>&#8363;</div>
 														</div>
 													</a>
 													
@@ -176,7 +176,7 @@
 											</div>
 											<div class="tt-cart-total-row">
 												<div class="tt-cart-total-title">Tổng tiền:</div>
-												<div class="tt-cart-total-price">$<%= session.cart.totalPrice %></div>
+												<div class="tt-cart-total-price"><%= session.cart.totalPrice.toLocaleString('vi-VN') %>&#8363;</div>
 											</div>
 											<div class="tt-cart-btn">
 												<% if(session.cart.numItems != 0){ %>

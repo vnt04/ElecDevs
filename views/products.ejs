@@ -12,7 +12,7 @@
 	<div class="container">
 		<ul>
 			<li><a href="/">Home</a></li>
-			<li>Danh sách</li>
+			<li><a href="/products">Danh sách</a> </li>
 		</ul>
 	</div>
 </div>
@@ -103,22 +103,24 @@
 						<h3 class="tt-collapse-title">Lọc theo giá</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-list-row" id="product-price">
-								<li><input type="radio" name="price" value="50">$0 — $50</li>
-								<li><input type="radio" name="price" value="100">$50 — $100</li>
-								<li><input type="radio" name="price" value="150">$100 — $150</li>
-								<li><input type="radio" name="price" value="200">$150 —  $200</li>
-								<li><input type="radio" name="price" value="1000000">>$200</li>
+								<li><input type="radio" name="price" value="1"> 0&#x20AB; — 250.000&#x20AB;</li>
+								<li><input type="radio" name="price" value="2"> 250.000&#x20AB; — 500.000&#x20AB;</li>
+								<li><input type="radio" name="price" value="3"> 500.000&#x20AB; — 1.000.000&#x20AB;</li>
+								<li><input type="radio" name="price" value="4"> 1.000.000&#x20AB; —  5.000.000&#x20AB;</li>
+								<li><input type="radio" name="price" value="5"> >5.000.000&#8363;</li>
 							</ul>
 						</div>
 					</div>
 					<div class="tt-collapse open">
-						<h3 class="tt-collapse-title">Lọc theo kích thước</h3>
+						<h3 class="tt-collapse-title">Lọc theo danh mục</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-list-row" id="product-size">
-								<li><input type="radio" name="size" value="S"> S</li>
-								<li><input type="radio" name="size" value="M"> M</li>
-								<li><input type="radio" name="size" value="L"> L</li>
-								<li><input type="radio" name="size" value="XL"> XL</li>
+								<li><input type="radio" name="type" value="Smartphone"> Smartphone</li>
+								<li><input type="radio" name="type" value="Laptop"> Laptop</li>
+								<li><input type="radio" name="type" value="Tai nghe"> Tai nghe</li>
+								<li><input type="radio" name="type" value="Smartwatch"> Smartwatch</li>
+								<li><input type="radio" name="type" value="Cáp sạc"> Cáp sạc</li>
+								<li><input type="radio" name="type" value="other">Khác</li>
 							</ul>
 						</div>
 					</div>
@@ -150,10 +152,10 @@
 						<h3 class="tt-collapse-title">Thương hiệu</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-list-row" id="product-label">
-								<li><input type="radio" name="label" value="shiro"> Shiro</li>
-								<li><input type="radio" name="label" value="crepp"> Crepp</li>
-								<li><input type="radio" name="label" value="mob"> Mob</li>
-								<li><input type="radio" name="label" value="Gucci"> Gucci</li>
+								<li><input type="radio" name="label" value="Apple"> Apple</li>
+								<li><input type="radio" name="label" value="Samsung"> Samsung</li>
+								<li><input type="radio" name="label" value="Oppo"> Oppo</li>
+								<li><input type="radio" name="label" value="Orther"> Other</li>
 							</ul>
 						</div>
 					</div>
@@ -247,23 +249,24 @@
 						<div class="tt-product-listing row">
 							<% allProducts.forEach(function(prod) { %>
 
-					
-
 								<div class="col-6 col-md-4 col-lg-3">
 									<div class="tt-product thumbprod-center">
 										<div class="tt-image-box">
-											
+											<div class="home-product-item__sale-off">
+												<div class="home-product-item__sale-off-label">Giảm</div>
+												<div class="home-product-item__sale-off-percent"><%=(Math.floor(prod.oldPrice/prod.price * 100 - 100)) %>% %></div>
+											</div>
 											
 											<a href="/product/<%= prod._id %>">
-												<span class="tt-img"><img src="http://bros-admin.herokuapp.com/assets/images/<%= prod.images[0] %>" data-src="http://bros-admin.herokuapp.com/assets/images/<%= prod.images[0] %>" alt="" class="loaded" data-was-processed="true"></span>
-												<span class="tt-img-roll-over"><img src="http://bros-admin.herokuapp.com/assets/images/<%= prod.images[1] %>" data-src="http://bros-admin.herokuapp.com/assets/images/<%= prod.images[1] %>" alt="" class="loaded" data-was-processed="true"></span>
+												<span class="tt-img"><img src="images/product/<%= prod.images[0] %>" data-src="images/product/<%= prod.images[0] %>" alt="" class="loaded" data-was-processed="true"></span>
+												<span class="tt-img-roll-over"><img src="images/product/<%= prod.images[1] %>" data-src="images/product/<%= prod.images[1] %>" alt="" class="loaded" data-was-processed="true"></span>
 											</a>
 										</div>
 										<div class="tt-description">
 											<div class="tt-row">
-												<ul class="tt-add-info">
+												<!-- <ul class="tt-add-info">
 													<li><a href="#"><%= prod.productType.sub %></a></li>
-												</ul>
+												</ul> -->
 												<div class="tt-rating">
 													<i class="icon-star"></i>
 													<i class="icon-star"></i>
@@ -273,8 +276,11 @@
 												</div>
 											</div>
 											<h2 class="tt-title"><a href="/product/<%= prod._id %>"><%= prod.name %></a></h2>
-											<div class="tt-price">
-												$<%= prod.price %>
+											<div class="tt-price tt-price-flex">
+												<%= prod.price.toLocaleString('vi-VN') %>&#8363;
+												<div class="tt-add-info">
+													<div><%= prod.oldPrice.toLocaleString('vi-VN') %>&#8363;</div>
+												</div>
 											</div>
 											<div class="tt-product-inside-hover" >
 												<div class="tt-row-btn">
@@ -336,7 +342,7 @@
 							<div class="tt-img">
 							  <img
 								src="/images/loader.svg"
-								data-src="http://bros-admin.herokuapp.com/assets/images/<%= prod.images[0] %>"
+								data-src="images/product/<%= prod.images[0] %>"
 								alt=""
 							  />
 							</div>
@@ -349,7 +355,7 @@
 						  <div class="tt-product-total">
 							<div class="tt-total">
 							  TOTAL:
-							  <span class="tt-price">$<%= prod.price %></span>
+							  <span class="tt-price"><%= prod.price.toLocaleString('vi-VN') %>&#x20AB;</span>
 							</div>
 						  </div>
 						</div>
