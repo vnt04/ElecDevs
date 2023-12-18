@@ -39,12 +39,12 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shivaluma/final-web-project.git"
+    "url": "git+https://github.com/vnt04/ElecDevs.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shivaluma/final-web-project/issues"
+    "url": "https://github.com/vnt04/ElecDevs.git/issues"
   },
-  "homepage": "https://github.com/shivaluma/final-web-project#readme"
+  "homepage": "https://github.com/vnt04/ElecDevs.git#readme"
 }
