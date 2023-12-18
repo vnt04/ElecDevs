@@ -46,5 +46,5 @@
   "bugs": {
     "url": "https://github.com/vnt04/ElecDevs.git/issues"
   },
-  "homepage": "https://github.com/vnt04/ElecDevs.git/index.ejs"
+  "homepage": "https://github.com/vnt04/ElecDevs.git#index.ejs"
 }
