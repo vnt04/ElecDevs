@@ -6,12 +6,6 @@
     "start": "node ./bin/www --port 3000",
     "dev": "nodemon ./bin/www"
   },
-  "builds": [
-    {
-      "src": "./server.js",
-      "use": "@vercel/node"
-    }
-  ],
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cart-localstorage": "^1.1.4",
